@@ -111,7 +111,7 @@ ps：什么？你之前从未用过 git？那还不赶紧体验一下可能是�
 
 ## 4.安装Hexo
 
-* 4.1 初始化hexo
+### 4.1 初始化hexo
 
 接下来进入最振奋人心的环节，配置Hexo!
 
@@ -153,7 +153,7 @@ ps：什么？你之前从未用过 git？那还不赶紧体验一下可能是�
 
 在初始化hexo博客前，输入如下命令：
 
->npm install hexo-deployer-git --save
+>npm install hexo-deployer-git --save  
 
 接下来依次输入如下命令启动hexo服务：
 
@@ -176,11 +176,44 @@ ps：什么？你之前从未用过 git？那还不赶紧体验一下可能是�
 
 这个界面有点丑？没关系，hexo支持”海量主题，一键换装“，~~hexo暖暖启动~~
 
-* 4.2 第一篇博客！
+### 4.2 讲hexo部署到github上
 
-************
-网上找的讲述搭建博客的文章往往花很大篇幅讲解如何搭建博客，如何配置，却对于如何写博客只有很少的篇幅甚至没有。因此，我希望能通过本章让各位理解如何才能开始写博客！
-************
+现在我们可以通过本地端口访问搭建的本地hexo博客，现在我们将要把本地的hexo部署到 github 上。
+
+用你的文本编辑器（不推荐使用win自带的记事本，推荐使用[Notepad++][23]）打开站点配置文件 `_config.yml` （此文件在你的项目根目录下对我来说也就是 `/blog`文件夹内）。
+
+![hexo配置文件][22]
+
+打开之后 `_config.yml` 之后拉倒最底下找到
+
+    deploy:
+     type:
+
+![deploy字段][24]
+
+字段，将其修改为：
+
+    deploy:
+     type: git
+     repo: https://github.com/YourgithubName/YourgithubName.github.io.git
+     branch: master
+
+其中 YourgihubName 是你 github 自己的 username。然后在bash中输入以下指令：
+
+    hexo clean      //清空缓存
+    hexo generate   //生成静态页面
+    hexo deploy     //部署博客至服务器/github/其他
+
+也可以简写为
+
+    hexo clean & hexo d -g
+
+上一条命令会经常使用，建议抄在手心。
+
+[22]:https://github.com/lxyforever/atest/raw/master/IMG/img/18.png "hexo配置文件"
+[23]:https://notepad-plus-plus.org/ "Notepad++ home page"
+[24]:https://github.com/lxyforever/atest/raw/master/IMG/img/19.png "hexo配置文件deploy字段"
+
 
 hexo服务启动后，我们首先先来看看如何写博客，毕竟内容才是博客的第一生产力！关于hexo的主题以及各种配置之后我会另写一片文章专门讲解。下面先来详细讲解hexo新建命令
 
